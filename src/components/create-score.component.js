@@ -10,6 +10,27 @@ export default class CreateScore extends Component {
       score_multiplayer: false
     }
   }
+  
+  onChangeScoreValue(e) {
+      this.setState({
+          score_value: e.target.value
+      });
+  }
+  onChangeScoreGame(e) {
+      this.setState({
+          score_game: e.target.value
+      });
+  }
+  onChangeScorePlayerNum(e) {
+      this.setState({
+          score_player_num: e.target.value
+      });
+  }
+  onChangeScoreMultiplayer(e) {
+      this.setState({
+          score_multiplayer: e.target.value
+      });
+  }
 
   render() {
     return (
