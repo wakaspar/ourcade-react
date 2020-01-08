@@ -9,6 +9,9 @@ class App extends Component {
         <div className="container">
           <h2>Welcome to Ourcade React!</h2>
         </div>
+        <Route path="/" exact component={ScoresList} />
+        <Route path="/edit/:id" component={EditScore} />
+        <Route path="/create" component={CreateScore} />
       </Router>
     );
   }
