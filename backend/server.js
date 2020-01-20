@@ -37,6 +37,17 @@ scoreRoutes.route('/:id').get(function(req, res) {
         res.json(score);
     });
 });
+// Add a new score
+scoreRoutes.route('/add').post(function(req, res) {
+    let score = new Score(req.body);
+    score.save()
+        .then(score => {
+            res.status(200).json({'score added: ': score});
+        })
+        .catch(err => {
+            res.status(400).send('failed to add new score');
+        });
+});
 // Update one score by :id
 scoreRoutes.route('/update/:id').post(function(req, res) {
     Score.findById(req.params.id, function(err, score) {
@@ -56,16 +67,17 @@ scoreRoutes.route('/update/:id').post(function(req, res) {
             });
     });
 });
-// Add a new score
-scoreRoutes.route('/add').post(function(req, res) {
-    let score = new Score(req.body);
-    score.save()
-        .then(score => {
-            res.status(200).json({'score added: ': score});
-        })
-        .catch(err => {
-            res.status(400).send('failed to add new score');
-        });
+// Delete one score by :id
+scoreRoutes.route('/delete/:id').delete(function(req, res) {
+    Score.findById(req.params.id, function(err, score) {
+      score.delete()
+          .then(score => {
+              res.status(200).json({'score deleted: ': score});
+          })
+          .catch(err => {
+              res.status(400).send('failed to delete score');
+          })
+    });
 });
 
 app.use('/scores', scoreRoutes);
