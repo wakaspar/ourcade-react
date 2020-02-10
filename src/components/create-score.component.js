@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class CreateScore extends Component {
   constructor(props) {
@@ -42,7 +43,7 @@ export default class CreateScore extends Component {
   onSubmit(e) {
         e.preventDefault();
         console.log('this.state : ', this.state);
-
+                
         this.setState({
             score_value: '',
             score_game: '',
