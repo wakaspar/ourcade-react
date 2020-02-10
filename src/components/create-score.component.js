@@ -45,10 +45,10 @@ export default class CreateScore extends Component {
         console.log('this.state : ', this.state);
 
         const newScore = {
-          score_value: this.state.score_value;
-          score_game: this.state.score_game;
-          score_multiplayer: this.state.score_multiplayer;
-          score_player_num: this.state.score_player_num;
+          score_value: this.state.score_value,
+          score_game: this.state.score_game,
+          score_multiplayer: this.state.score_multiplayer,
+          score_player_num: this.state.score_player_num
         };
 
         axios.post('http://localhost:4000/scores/add', newScore)
