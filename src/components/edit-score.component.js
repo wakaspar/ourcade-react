@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-
 export default class EditScore extends Component {
 
     constructor(props){
       super(props);
+      // binds methods to class constructor
+      this.onChangeScoreValue = this.onChangeScoreValue.bind(this);
+      this.onChangeScoreGame = this.onChangeScoreGame.bind(this);
+      this.onChangeScorePlayerNum = this.onChangeScorePlayerNum.bind(this);
+      this.onChangeScoreMultiplayer = this.onChangeScoreMultiplayer.bind(this);
+      this.onSubmit = this.onSubmit.bind(this);
+
       this.state = {
-        score_value : '',
-        score_game : '',
-        score_multiplayer : false,
-        score_player_num : ''
+        score_value: '',
+        score_game: '',
+        score_multiplayer: false,
+        score_player_num: ''
       }
     }
 
     componentDidMount(){
-      axios.get('http://localhost:4000/scores' + this.props.match.params.id)
+      axios.get('http://localhost:4000/scores/' + this.props.match.params.id)
         .then(response => {
           this.setState({
             score_value : response.data.score_value,
@@ -29,6 +35,43 @@ export default class EditScore extends Component {
         })
     }
 
+    // onChange methods
+    onChangeScoreValue(e) {
+        this.setState({
+            score_value: e.target.value
+        });
+    }
+    onChangeScoreGame(e) {
+        this.setState({
+            score_game: e.target.value
+        });
+    }
+    onChangeScorePlayerNum(e) {
+        this.setState({
+            score_player_num: e.target.value
+        });
+    }
+    onChangeScoreMultiplayer(e) {
+        this.setState({
+            score_multiplayer: e.target.value
+        });
+    }
+    // form onSubmit method
+    onSubmit(e) {
+       e.preventDefault();
+       const obj = {
+         score_value: this.state.score_value,
+         score_game: this.state.score_game,
+         score_multiplayer: this.state.score_multiplayer,
+         score_player_num: this.state.score_player_num
+       };
+       console.log(obj);
+       axios.post('http://localhost:4000/scores/update/' + this.props.match.params.id, obj)
+           .then(res => console.log(res.data));
+
+       this.props.history.push('/');
+   }
+
     render() {
         return (
           <div style={{marginTop: 10}}>
@@ -40,6 +83,7 @@ export default class EditScore extends Component {
                           className="form-control"
                           value={this.state.score_value}
                           onChange={this.onChangeScoreValue}
+                          placeholder={this.state.score_value}
                           />
               </div>
               <div className="form-group">
@@ -124,7 +168,8 @@ export default class EditScore extends Component {
               </div>
 
               <div className="form-group">
-                  <input type="submit" value="Create Score" className="btn btn-primary" />
+                  <input type="submit" value="Edit Score" className="btn btn-primary" style={{marginRight: 10}} />
+
               </div>
             </form>
           </div>
