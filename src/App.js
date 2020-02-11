@@ -34,7 +34,7 @@ class App extends Component {
          <Route path="/" exact component={ScoresList} />
          <Route path="/edit/:id" component={EditScore} />
          <Route path="/create" component={CreateScore} />
-
+         <Route path="/delete/:id" component={DeleteScore} />
         </div>
       </Router>
     );
