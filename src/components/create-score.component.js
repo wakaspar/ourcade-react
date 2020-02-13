@@ -61,6 +61,8 @@ export default class CreateScore extends Component {
               score_multiplayer: false,
               score_player_num: ''
           })
+
+          this.props.history.push('/');
     }
     // CreateScore render statement
     render() {

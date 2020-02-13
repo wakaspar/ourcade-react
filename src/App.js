@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import logo from "./logo.svg"
+import icon from "./pins-icon.png"
 
 import CreateScore from "./components/create-score.component";
 import EditScore from "./components/edit-score.component";
+import DeleteScore from "./components/delete-score.component";
 import ScoresList from "./components/scores-list.component";
 
 class App extends Component {
@@ -15,9 +16,9 @@ class App extends Component {
         <div className="container">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
            <a className="navbar-brand" href="/" target="_blank">
-             <img src={logo} width="30" height="30" alt="Ourcade React" />
+             <img src={icon} alt="Ourcade React" />
            </a>
-           <Link to="/" className="navbar-brand">Ourcade React</Link>
+           <Link to="/" className="navbar-brand">Ourcade</Link>
            <div className="collpase navbar-collapse">
              <ul className="navbar-nav mr-auto">
                <li className="navbar-item">

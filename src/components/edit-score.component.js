@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import DeleteScore from "./delete-score.component";
+
 export default class EditScore extends Component {
 
     constructor(props){
@@ -11,6 +13,7 @@ export default class EditScore extends Component {
       this.onChangeScorePlayerNum = this.onChangeScorePlayerNum.bind(this);
       this.onChangeScoreMultiplayer = this.onChangeScoreMultiplayer.bind(this);
       this.onSubmit = this.onSubmit.bind(this);
+      this.handleDeleteScore = this.handleDeleteScore.bind(this);
 
       this.state = {
         score_value: '',
@@ -70,7 +73,11 @@ export default class EditScore extends Component {
            .then(res => console.log(res.data));
 
        this.props.history.push('/');
-   }
+    }
+
+    handleDeleteScore(){
+        this.props.history.push('/');
+    }
 
     render() {
         return (
@@ -169,7 +176,7 @@ export default class EditScore extends Component {
 
               <div className="form-group">
                   <input type="submit" value="Edit Score" className="btn btn-primary" style={{marginRight: 10}} />
-
+                  <DeleteScore score={this.props.match.params.id} unmount={this.handleDeleteScore} />
               </div>
             </form>
           </div>
